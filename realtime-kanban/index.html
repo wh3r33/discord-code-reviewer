@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>realtime-kanban</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="app">
+      <section id="welcome" class="welcome-screen" aria-label="Welcome Experience">
+        <div class="paper-grid" aria-hidden="true"></div>
+        <div class="welcome-system">
+          <div class="system-badge">
+            <span class="pulse-dot"></span>
+            <span>LIVE SYSTEM</span>
+          </div>
+        </div>
+        <div class="welcome-copy">
+          <p class="kicker reveal">realtime-kanban Workspace</p>
+          <h1 class="poster-title" aria-label="Realtime Kanban">
+            <span class="line-real reveal">REALTIME</span>
+            <span class="overlay-word pixel-outline reveal">Connected</span>
+            <span class="line-kanban reveal">KANBAN</span>
+          </h1>
+          <div class="welcome-actions reveal">
+            <button class="enter-button" id="enterWorkspace" type="button">
+              <span>Enter Workspace</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </button>
+            <p>Collaborative board prototype with visible live state, motion feedback, and editorial workspace structure.</p>
+          </div>
+        </div>
+        <div class="welcome-side-note reveal">
+          <span>SYNC LEDGER</span>
+          <strong>04 active collaborators</strong>
+          <small>Realtime presence, edits, locks and conflicts simulated locally.</small>
+        </div>
+        <div class="tech-bar" aria-label="Technical information">
+          <div><span>ONLINE USERS</span><strong>04</strong></div>
+          <div><span>ACTIVE BOARDS</span><strong>01</strong></div>
+          <div><span>SYNC STATUS</span><strong>STABLE</strong></div>
+          <div><span>VERSION</span><strong>0.9.6</strong></div>
+        </div>
+      </section>
+
+      <section id="workspace" class="workspace-screen" aria-label="Workspace Experience" hidden>
+        <div class="workspace-noise" aria-hidden="true"></div>
+        <header class="topbar glass">
+          <div class="presence-cluster" aria-label="Online users">
+            <span class="online-signal"></span>
+            <span>4 online</span>
+            <div class="mini-avatars" id="miniAvatars"></div>
+          </div>
+          <nav class="nav-capsule" aria-label="Workspace navigation">
+            <button class="active" type="button">Board</button>
+            <button type="button">Activity</button>
+            <button type="button">Members</button>
+            <button type="button">Settings</button>
+          </nav>
+          <div class="top-actions">
+            <button class="ghost-button" type="button" aria-label="Invite">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8M19 8v6M22 11h-6" /></svg>
+              <span>Invite</span>
+            </button>
+            <button class="icon-button" type="button" aria-label="Notifications">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0" /></svg>
+              <span class="notification-dot"></span>
+            </button>
+            <button class="profile-button" type="button" aria-label="Profile">NN</button>
+          </div>
+        </header>
+
+        <aside class="activity-rail glass" aria-label="Live collaboration state">
+          <div class="rail-section">
+            <p class="rail-label">Editing Now</p>
+            <div id="editingNow" class="editing-now"></div>
+          </div>
+          <div class="rail-section">
+            <p class="rail-label">Recent Activity</p>
+            <div id="activityFeed" class="activity-feed"></div>
+          </div>
+        </aside>
+
+        <div class="workspace-shell">
+          <section class="board-hero">
+            <div>
+              <p class="kicker">realtime-kanban Board</p>
+              <h2>Collaboration, visible by default.</h2>
+            </div>
+            <div class="board-meta">
+              <span class="status-badge live">LIVE</span>
+              <span class="status-badge online">ONLINE</span>
+              <span id="lastChanged">Last change just now</span>
+            </div>
+          </section>
+
+          <section class="board-layout" id="board" aria-label="Kanban board"></section>
+        </div>
+
+        <aside id="taskDrawer" class="task-drawer glass" aria-label="Task details" aria-hidden="true">
+          <div class="drawer-header">
+            <div>
+              <p class="kicker">Task Detail</p>
+              <h3 id="drawerTitle">Select a task</h3>
+            </div>
+            <button id="closeDrawer" class="icon-button" type="button" aria-label="Close task drawer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+            </button>
+          </div>
+          <div id="drawerContent" class="drawer-content"></div>
+        </aside>
+
+        <div id="toastStack" class="toast-stack" aria-live="polite" aria-atomic="true"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
